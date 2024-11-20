@@ -1,5 +1,10 @@
-[gd_scene format=3 uid="uid://faetjs2qgtbg"]
+[gd_scene load_steps=2 format=3 uid="uid://faetjs2qgtbg"]
+
+[ext_resource type="PackedScene" uid="uid://cpsgnibyjpkq5" path="res://Scenes/Snake.tscn" id="1_l3s3s"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Snake" parent="." instance=ExtResource("1_l3s3s")]
