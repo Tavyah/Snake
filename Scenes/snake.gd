@@ -1,8 +1,10 @@
 extends Area2D
 signal hit
 
-@export var speed = 400
+@export var speed = 70
 var screen_size
+var velocity = Vector2.ZERO
+var current_input
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -11,22 +13,25 @@ func _process(delta: float) -> void:
 	check_movement(delta)
 
 func check_movement(delta: float) -> void:
-	var velocity = Vector2.ZERO
-	if Input.is_action_just_pressed("move_up"):
+	# checking if velocity is 0 or not, if not 0, then a direction is already set on same index (x,y). If not a direction set in same index, then u can set a direction
+	# Don't want the snake to be able to move towards it's own body.
+	if Input.is_action_just_pressed("move_up") and velocity.y == 0:
+		velocity = Vector2.ZERO
 		velocity.y -= 1
-	if Input.is_action_just_pressed("move_down"):
+	if Input.is_action_just_pressed("move_down") and velocity.y == 0:
+		velocity = Vector2.ZERO
 		velocity.y += 1
-	if Input.is_action_just_pressed("move_right"):
+	if Input.is_action_just_pressed("move_right") and velocity.x == 0:
+		velocity = Vector2.ZERO
 		velocity.x += 1
-	if Input.is_action_just_pressed("move_left"):
+	if Input.is_action_just_pressed("move_left") and velocity.x == 0:
+		velocity = Vector2.ZERO
 		velocity.x -= 1
 		
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+	velocity = velocity.normalized() * speed
 	
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
-
+	#position = position.clamp(Vector2.ZERO, screen_size)
 
 func _on_body_entered(body: Node2D) -> void:
 	hide()
