@@ -42,3 +42,8 @@ func start(pos: Vector2) -> void:
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+	#TODO Add restart game
+	print("Im dead")
