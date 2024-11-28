@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddwhukdarjwv2"]
+
+[ext_resource type="Texture2D" uid="uid://ds0qpcv46rfnm" path="res://Assets/snake_body.png" id="1_to78f"]
+[ext_resource type="Script" path="res://Scenes/food.gd" id="1_vbd23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50r0r"]
+size = Vector2(8, 8)
+
+[node name="Food" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_vbd23")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_to78f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_50r0r")

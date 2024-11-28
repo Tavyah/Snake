@@ -1,7 +1,7 @@
 extends Area2D
 signal hit
 
-@export var speed = 70
+@export var speed = 50
 var screen_size
 var velocity = Vector2.ZERO
 var current_input
@@ -34,7 +34,6 @@ func check_movement(delta: float) -> void:
 	#position = position.clamp(Vector2.ZERO, screen_size)
 
 func _on_body_entered(body: Node2D) -> void:
-	hide()
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
 	
