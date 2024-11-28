@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://faetjs2qgtbg"]
+[gd_scene load_steps=3 format=3 uid="uid://faetjs2qgtbg"]
 
 [ext_resource type="PackedScene" uid="uid://cpsgnibyjpkq5" path="res://Scenes/Snake.tscn" id="1_l3s3s"]
+[ext_resource type="PackedScene" uid="uid://ddwhukdarjwv2" path="res://Scenes/food.tscn" id="2_0vda3"]
 
 [node name="Game" type="Node2D"]
 
@@ -8,3 +9,6 @@
 zoom = Vector2(5, 5)
 
 [node name="Snake" parent="." instance=ExtResource("1_l3s3s")]
+
+[node name="Food" parent="." instance=ExtResource("2_0vda3")]
+position = Vector2(37, 25)
