@@ -12,3 +12,7 @@ func _ready() -> void:
 func new_game() -> void:
 	score = 0
 	$Hud.get_node("ScoreLabel").text = "Score: " + str(score)
+
+func add_to_score() -> void:
+	score += 1
+	$Hud.get_node("ScoreLabel").text = "Score: " + str(score) 

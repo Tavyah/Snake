@@ -1,11 +1,11 @@
 extends Area2D
-signal hit
 
 @export var speed = 50
 var screen_size
 var velocity = Vector2.ZERO
 @onready var sprite_2d: Sprite2D = $Sprite2D
 var tile_size = 8
+@onready var game: Node2D = $".."
 
 func _ready() -> void:
 	#screen_size = get_viewport_rect().size
@@ -41,8 +41,9 @@ func check_movement(delta: float) -> void:
 	#position = position.clamp(Vector2.ZERO, screen_size)
 
 func _on_body_entered(body: Node2D) -> void:
-	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
+	game.add_to_score()
+	body.queue_free()
 	
 func start(pos: Vector2) -> void:
 	position = pos
@@ -53,6 +54,3 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 	#TODO Add restart game
 	print("Im dead")
-
-func _on_hit() -> void:
-	print("You hit food, num num..")
