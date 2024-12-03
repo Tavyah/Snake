@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 0.01
+@export var speed = 0.1
 #var screen_size
 var velocity = Vector2.ZERO
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -63,8 +63,9 @@ func check_movement(delta) -> void:
 		is_moving = true
 	
 	#print(position)
-	if is_moving:
-		position += direction * grid.tile_size * speed
+	
+	var new_position : Vector2 = grid.move_to_grid_tile(position, direction)
+	position = new_position
 	
 func _on_body_entered(body: Node2D) -> void:
 	#$CollisionShape2D.set_deferred("disabled", true)
