@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://faetjs2qgtbg"]
+
+[ext_resource type="PackedScene" uid="uid://cpsgnibyjpkq5" path="res://Scenes/Snake.tscn" id="1_l3s3s"]
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_wvfbn"]
+[ext_resource type="PackedScene" uid="uid://dhv8gv2jv82k3" path="res://Scenes/food.tscn" id="2_mwrm4"]
+[ext_resource type="Script" path="res://grid_system.gd" id="3_f3slv"]
+[ext_resource type="PackedScene" uid="uid://bndip8qhc442l" path="res://Scenes/hud.tscn" id="5_7rf3w"]
+
+[sub_resource type="TileSet" id="TileSet_rbi6r"]
+tile_size = Vector2i(8, 8)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_wvfbn")
+
+[node name="Grid" type="TileMapLayer" parent="."]
+visible = false
+z_index = -5
+position = Vector2(0, 4)
+tile_set = SubResource("TileSet_rbi6r")
+script = ExtResource("3_f3slv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -5)
+zoom = Vector2(5, 5)
+
+[node name="Snake" parent="." instance=ExtResource("1_l3s3s")]
+position = Vector2(-4, 0)
+
+[node name="Food" parent="." instance=ExtResource("2_mwrm4")]
+position = Vector2(28, 24)
+
+[node name="Hud" parent="." instance=ExtResource("5_7rf3w")]

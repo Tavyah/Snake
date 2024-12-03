@@ -2,9 +2,7 @@ extends Node2D
 
 var score : int = 0
 var game_started : bool = false
-
-var cells : int = 10
-var cell_size : int = 8
+@onready var grid: TileMapLayer = $Grid
 
 func _ready() -> void:
 	new_game()
