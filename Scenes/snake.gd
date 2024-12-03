@@ -62,7 +62,9 @@ func check_movement(delta) -> void:
 		direction = Vector2.RIGHT
 		is_moving = true
 	
-	print(position)
+	#print(position)
+	if is_moving:
+		position += direction * grid.tile_size * speed
 	
 func _on_body_entered(body: Node2D) -> void:
 	#$CollisionShape2D.set_deferred("disabled", true)
