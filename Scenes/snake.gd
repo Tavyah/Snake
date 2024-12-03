@@ -1,12 +1,13 @@
 extends Area2D
 
-@export var speed = 50
+@export var speed = 0.01
 #var screen_size
 var velocity = Vector2.ZERO
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var grid: TileMapLayer = $"../Grid"
 @onready var game: Node2D = $".."
-var direction
+var direction : Vector2 = Vector2.ZERO
+var is_moving : bool = false
 
 func _ready() -> void:
 	#screen_size = get_viewport_rect().size
@@ -44,17 +45,24 @@ func check_movement(delta: float) -> void:
 """
 
 func check_movement(delta) -> void:
-	if Input.is_action_just_pressed("up"):
-		position += Vector2.UP * 8
-	if Input.is_action_just_released("down"):
-		position += Vector2.DOWN * 8
-	if Input.is_action_just_pressed("left"):
-		position += Vector2.LEFT * 8
-	if Input.is_action_just_pressed("right"):
-		position += Vector2.RIGHT * 8
+	if (Input.is_action_just_pressed("up") and direction != Vector2.DOWN):
+		position += Vector2.UP * grid.tile_size
+		direction = Vector2.UP
+		is_moving = true
+	if Input.is_action_just_pressed("down") and direction != Vector2.UP:
+		position += Vector2.DOWN * grid.tile_size
+		direction = Vector2.DOWN
+		is_moving = true
+	if Input.is_action_just_pressed("left") and direction != Vector2.RIGHT:
+		position += Vector2.LEFT * grid.tile_size
+		direction = Vector2.LEFT
+		is_moving = true
+	if Input.is_action_just_pressed("right") and direction != Vector2.LEFT:
+		position += Vector2.RIGHT * grid.tile_size
+		direction = Vector2.RIGHT
+		is_moving = true
 	
-	# Continue movement in direction
-	#position += Vector2.dot * delta * speed
+	print(position)
 	
 func _on_body_entered(body: Node2D) -> void:
 	#$CollisionShape2D.set_deferred("disabled", true)

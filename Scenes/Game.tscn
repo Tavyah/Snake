@@ -131,7 +131,6 @@ zoom = Vector2(5, 5)
 
 [node name="Snake" parent="." instance=ExtResource("1_l3s3s")]
 position = Vector2(4, 0)
-speed = null
 
 [node name="Food" parent="." instance=ExtResource("2_mwrm4")]
 position = Vector2(28, 24)

@@ -8,6 +8,7 @@ size = Vector2(6, 7)
 
 [node name="Snake" type="Area2D"]
 script = ExtResource("1_acf6x")
+speed = null
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
