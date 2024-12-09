@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=4 uid="uid://faetjs2qgtbg"]
 
 [ext_resource type="PackedScene" uid="uid://cpsgnibyjpkq5" path="res://Scenes/Snake.tscn" id="1_l3s3s"]
-[ext_resource type="Script" path="res://Scripts/game.gd" id="1_wvfbn"]
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_wvfbn"]
 [ext_resource type="PackedScene" uid="uid://dhv8gv2jv82k3" path="res://Scenes/food.tscn" id="2_mwrm4"]
-[ext_resource type="Script" path="res://Scripts/grid_system.gd" id="3_f3slv"]
+[ext_resource type="Script" path="res://grid_system.gd" id="3_f3slv"]
 [ext_resource type="Texture2D" uid="uid://sdsyciqwhlwt" path="res://Assets/snake_background.png" id="4_vpqfw"]
 [ext_resource type="PackedScene" uid="uid://bndip8qhc442l" path="res://Scenes/hud.tscn" id="5_7rf3w"]
 

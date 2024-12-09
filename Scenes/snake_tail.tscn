@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch6ym11q05nph"]
+
+[ext_resource type="Texture2D" uid="uid://b0nc1vyharbgu" path="res://Assets/snake_tail.png" id="1_n18mu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smuce"]
+size = Vector2(6, 6)
+
+[node name="Snake Tail" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_smuce")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n18mu")

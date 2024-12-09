@@ -1,19 +1,30 @@
 extends Area2D
 
-@export var speed = 0.1
+@export var speed = 1
 #var screen_size
-var velocity = Vector2.ZERO
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var grid: TileMapLayer = $"../Grid"
 @onready var game: Node2D = $".."
 var direction : Vector2 = Vector2.ZERO
 var is_moving : bool = false
+@onready var snake_body_scene : PackedScene = preload("res://Scenes/snake_body.tscn")
+@onready var snake_tail_scene : PackedScene = preload("res://Scenes/snake_tail.tscn")
 
 func _ready() -> void:
 	#screen_size = get_viewport_rect().size
 	position = position.snapped(Vector2.ONE * grid.grid_size)
 	position.x += grid.tile_size / 2
 	print(position)
+	var snake_body = snake_body_scene.instantiate()
+	var snake_tail = snake_tail_scene.instantiate()
+	snake_body.position = position
+	snake_body.position.x -= grid.tile_size / 2
+	snake_body.position.y += grid.tile_size
+	add_child(snake_body)
+	snake_tail.position = position
+	snake_tail.position.x -= grid.tile_size / 2 
+	snake_tail.position.y += grid.tile_size + 8
+	add_child(snake_tail)
 
 func _process(delta: float) -> void:
 	check_movement(delta)
@@ -63,10 +74,9 @@ func check_movement(delta) -> void:
 		is_moving = true
 	
 	#print(position)
-	
-	var new_position : Vector2 = grid.move_to_grid_tile(position, direction)
-	position = new_position
-	
+	#var new_position : Vector2 = grid.move_to_grid_tile(position, direction)
+	#position += new_position * delta * speed
+		
 func _on_body_entered(body: Node2D) -> void:
 	#$CollisionShape2D.set_deferred("disabled", true)
 	game.add_to_score()

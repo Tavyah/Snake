@@ -8,7 +8,7 @@ var tile_size : int:
 		
 var grid_size : int:
 	get:
-		return 16
+		return 64
 	set(new_grid_size):
 		grid_size = new_grid_size
 
@@ -18,8 +18,8 @@ func _ready() -> void:
 func _generate_grid() -> void:
 	var grid_dict : Dictionary = {}
 
-	for coor_x in range(tile_size / 2, grid_size + 1, tile_size / 2):
-		for coor_y in range(0, grid_size + 1, tile_size / 2):
+	for coor_x in range(-36, 36 + 8, tile_size):
+		for coor_y in range(-32, 40 + 8, tile_size):
 			var coordinates : Vector2 = Vector2(coor_x, coor_y)
 			grid_dict[coordinates] = true
 	
@@ -30,11 +30,11 @@ func _generate_grid() -> void:
 
 func move_to_grid_tile(current_grid_tile: Vector2, new_direction: Vector2) -> Vector2:
 	# Sjekke kor man e hen på griden, deretter flytte til neste grid tile utifra hvilken Vector2 input man har
-	print(current_grid_tile)
-	current_grid_tile.snapped(current_grid_tile)
-	print(current_grid_tile)
-	print(new_direction * tile_size)
-	return current_grid_tile + (new_direction * tile_size)
+	printt(current_grid_tile, 'this is the current grid tile')
+	#print(new_direction * tile_size)
+	var next_grid_tile = current_grid_tile + (new_direction * tile_size)
+	printt(next_grid_tile, 'this is the next grid tile')
+	return next_grid_tile
 	
 	
 #TODO Sette riktige grid tiles som brukes til true eller false sånn at æ veit kor slangen kan gå eller kor maten kan gå
